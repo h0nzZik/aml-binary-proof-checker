@@ -1,12 +1,14 @@
 # https://stackoverflow.com/a/64068109/6209703
 makeFileDir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-TEMP_DIR := ${makeFileDir}/.tmp
-$(shell mkdir -p ${TEMP_DIR})
-BUILD_DIR :=${TEMP_DIR}/build
+BUILD_DIR := ${makeFileDir}/.build
+$(shell mkdir -p ${BUILD_DIR})
 
 
-CFLAGS := -stid=c11 -Wall -Wextra -pedantic
+CFLAGS := -std=c11 -Wall -Wextra -pedantic
+
+.PHONY: default
+default: $(BUILD_DIR)/checker
 
 $(BUILD_DIR)/check.o: check.c
 	$(CC) $(CFLAGS) -c $< -o $@
