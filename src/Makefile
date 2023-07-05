@@ -8,7 +8,7 @@ $(shell mkdir -p ${BUILD_DIR})
 CFLAGS := -std=c11 -Wall -Wextra -pedantic
 
 .PHONY: default
-default: $(BUILD_DIR)/checker
+default: $(BUILD_DIR)/checker $(BUILD_DIR)/test
 
 $(BUILD_DIR)/check.o: check.c
 	$(CC) $(CFLAGS) -c $< -o $@
